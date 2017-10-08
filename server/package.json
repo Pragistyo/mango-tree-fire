@@ -1,0 +1,26 @@
+{
+  "name": "mango-tree-fire",
+  "version": "1.0.0",
+  "description": "simple Real time simulation of mango tree using firebase",
+  "main": "mango_tree.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pragistyo/mango-tree-fire.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pragistyo/mango-tree-fire/issues"
+  },
+  "homepage": "https://github.com/Pragistyo/mango-tree-fire#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.1",
+    "firebase": "^4.5.0",
+    "node-cron": "^1.2.1"
+  }
+}
