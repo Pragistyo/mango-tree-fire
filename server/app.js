@@ -295,8 +295,13 @@ class TreeGroove{
 app.get('/start',(req,res) => {
   console.log('masuk routing start')
   res.send('masuk routing start')
-  let pohonMangga = new MangoTree('MangoTree', 1, 2, 8, true)
-  let ngitung     = cron.schedule('*/1 * * * * *',(blabla) => {
+  // let treeMango = new MangoTree('MangoTree', 1, 2, 8, true)
+  treeMango._name = 'MangoTree'
+  treeMango._age  = 1
+  treeMango._height = 2
+  treeMango._qtyBefore = 8
+  treeMango._healthyStatus = true
+  let ngitung     = cron.schedule('* * * * * *',(blabla) => {
     treeMango.grow()
     treeMango.produce()
     treeMango.harvest()

@@ -3,8 +3,8 @@
     <h1>Mango tree Real time: you know what it does</h1>
     <h2>Set interval every 1 secs</h2>
     <button class="btn" @click="startGrow">START</button>
-    <h2>{{status}}</h2>
-    <h3>{{isDead}}</h3>
+    <h2><strong style="color:orange">{{status}}</strong></h2>
+    <h1><strong style="color:red">{{isDead}}</strong></h1>
     <!-- <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
       <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
