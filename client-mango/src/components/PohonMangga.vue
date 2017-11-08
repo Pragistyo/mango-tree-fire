@@ -1,10 +1,18 @@
 <template>
   <div class="hello">
-    <h1>Mango tree Real time: you know what it does</h1>
+    <legend><h1>REPORT</h1></legend>
+    <!-- <h1>{{growth}}</h1> -->
+    <h1>Mango tree Real time simulation</h1>
     <h2>Set interval every 1 secs</h2>
-    <button class="btn" @click="startGrow">START</button>
-    <h2><strong style="color:orange">{{status}}</strong></h2>
-    <h1><strong style="color:red">{{isDead}}</strong></h1>
+    <button class="btn btn-info" @click="startGrow()">START</button>
+    <h2><strong style="color:teal">{{status}}</strong></h2>
+    <!-- <h2 v-if="!status">----------------------------------------------</h2> -->
+    <div class="panel panel-warning" v-if="isDead">
+      <h1><strong style="color:red">{{isDead}}</strong></h1>
+    </div>
+    <button :class="colorsasa"><h3>Umur Si Mangga: {{obj._age}}</h3></button>
+    <!-- <p>STATE: "{{msg}}"</p> -->
+    <!-- <p>COMPUTED: "{{colorsasa}}"</p> -->
     <!-- <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
       <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
@@ -24,13 +32,14 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      isDead: '',
-      status: ''
+      isDead: null,
+      status: null,
+      obj: null
     }
   },
   mounted: function () {
@@ -44,11 +53,28 @@ export default {
       this.$db.on('value', (mango) => {
         this.status = mango.val().status
         this.isDead = mango.val().isDead
+        this.obj = mango.val().obj
       })
     },
     startGrow () {
       this.$db.set({ isDead: '', status: '' })
       this.start()
+    }
+  },
+  computed: {
+    ...mapState([
+      'growth'
+    ]),
+    colorsasa: function () {
+      if (this.obj._age <= 8 && this.obj._age >= 0) {
+        return 'btn btn-success disabled'
+      } else if (this.obj._age <= 15) {
+        return 'btn btn-warning disabled'
+      } else if (this.obj._age <= 20) {
+        return 'btn btn-danger disabled'
+      } else {
+        return 'btn btn-primary disabled'
+      }
     }
   }
 }

@@ -291,32 +291,37 @@ class TreeGroove{
 // const start = require('./router/start');
 
 // app.use('/start', start)
-
+console.log('hahah');
 app.get('/start',(req,res) => {
-  console.log('masuk routing start')
-  res.send('masuk routing start')
+  // res.send('masuk routing start')
   // let treeMango = new MangoTree('MangoTree', 1, 2, 8, true)
+  console.log(treeMango._harvested)
   treeMango._name = 'MangoTree'
-  treeMango._age  = 1
+  treeMango._age  = 0
   treeMango._height = 2
   treeMango._qtyBefore = 8
   treeMango._healthyStatus = true
+  treeMango._fruitsBox = []
   let ngitung     = cron.schedule('* * * * * *',(blabla) => {
     treeMango.grow()
     treeMango.produce()
     treeMango.harvest()
+    res.write('treeMango')
     db.ref('siMangga').set({
       isDead:'',
-      status: `[Year ${treeMango._age} Report] Height = ${treeMango._height} | Fruits harvested = ${treeMango._harvested}`
+      status: `[Year ${treeMango._age} Report] Height = ${treeMango._height} m | Fruits harvested = ${treeMango._harvested}`,
+      obj: treeMango
     })
     console.log(`\n===================Data ${treeMango._name} tree:======================================\n`);
     console.log(`[Year ${treeMango._age} Report] Height = ${treeMango._height} | Fruits harvested = ${treeMango._harvested}`)
     if (treeMango._healthyStatus == false) {
       console.log('Pohon mangganya dead')
       db.ref('siMangga').set({
-        isDead: 'Pohon mangganya dead'
+        isDead: 'Pohon mangganya dead',
+        obj: treeMango
       })
       ngitung.stop()
+      res.end()
     }
   })
 })

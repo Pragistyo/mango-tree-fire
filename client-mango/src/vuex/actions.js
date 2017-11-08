@@ -8,7 +8,7 @@ export default {
   start ({ commit }, user) {
     http.get('/start', {})
     .then(result => {
-      console.log('hahahah')
+      console.log('hahahah' + JSON.stringify(result))
       commit('mangoGrow', result)
     })
     .catch(err => {
