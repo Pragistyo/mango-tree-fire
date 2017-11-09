@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const http = axios.create({
+  // baseURL: 'http://ec2-52-40-130-216.us-west-2.compute.amazonaws.com:3000'
   baseURL: 'http://localhost:3000'
 })
 

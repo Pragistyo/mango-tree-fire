@@ -306,7 +306,7 @@ app.get('/start',(req,res) => {
     treeMango.grow()
     treeMango.produce()
     treeMango.harvest()
-    res.write('treeMango')
+    // res.write('treeMango')
     db.ref('siMangga').set({
       isDead:'',
       status: `[Year ${treeMango._age} Report] Height = ${treeMango._height} m | Fruits harvested = ${treeMango._harvested}`,
@@ -321,13 +321,13 @@ app.get('/start',(req,res) => {
         obj: treeMango
       })
       ngitung.stop()
-      res.end()
+      // res.end()
     }
   })
 })
 
 
-app.listen(3000 || process.end.PORT,()=>{
+app.listen(3000 || process.env.PORT,()=>{
   console.log('============ PORT ===============');
   console.log('cinta bertepuk sebelah kaki');
 })
