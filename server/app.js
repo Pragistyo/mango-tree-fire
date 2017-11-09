@@ -327,7 +327,7 @@ app.get('/start',(req,res) => {
 })
 
 
-app.listen(3020 || process.env.PORT,()=>{
+app.listen(process.env.PORT || 3020  ,()=>{
   console.log('============ PORT ===============');
   console.log('cinta bertepuk sebelah kaki');
 })
